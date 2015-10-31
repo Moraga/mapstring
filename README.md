@@ -2,24 +2,26 @@
 Example
 -------
 
-	<?php
+```php
+<?php
 
-	$str = <<<E
-	var variants = [   { sku: 'P170.SP110', productID: '4355706', name:
-	'Home Theater 5.1 80W Black Wave SP110 Multilaser', isPromotion: 'false',
-	price: '429,900', priceBase: '429,900', priceDescription: 
-	'some description', isPurchasable: true, isInventoryAvailable: true, 
-	handlingDays: 4, MinimumQtyAllowed:'0', MaximumQtyAllowed:'0', 
-	availability: 'I', StockBalance:'10,00' , options: [      ]   },
-	{ sku: '170.SP110', productID: '4355704', name: 'Home Theater 5.1',
-	isPromotion: 'false', price: '429,900', priceBase: '429,900',
-	priceDescription: 'other description', isPurchasable: true,
-	isInventoryAvailable: true, handlingDays: 4, MinimumQtyAllowed:'0',
-	MaximumQtyAllowed:'0', availability: 'I', StockBalance:'10,00' ,
-	options: [      ]   },   ];
-	E;
+$str = <<<E
+var variants = [   { sku: 'P170.SP110', productID: '4355706', name:
+'Home Theater 5.1 80W Black Wave SP110 Multilaser', isPromotion: 'false',
+price: '429,900', priceBase: '429,900', priceDescription: 
+'some description', isPurchasable: true, isInventoryAvailable: true, 
+handlingDays: 4, MinimumQtyAllowed:'0', MaximumQtyAllowed:'0', 
+availability: 'I', StockBalance:'10,00' , options: [      ]   },
+{ sku: '170.SP110', productID: '4355704', name: 'Home Theater 5.1',
+isPromotion: 'false', price: '429,900', priceBase: '429,900',
+priceDescription: 'other description', isPurchasable: true,
+isInventoryAvailable: true, handlingDays: 4, MinimumQtyAllowed:'0',
+MaximumQtyAllowed:'0', availability: 'I', StockBalance:'10,00' ,
+options: [      ]   },   ];
+E;
 
-		print_r(mapstring($str));
+print_r(mapstring($str));
+```
 
 	Array
 	(
