@@ -6,15 +6,12 @@
  */
 
 function mapstring($str) {
-	$kys = [];
-	$vls = [];
 	$alp = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	$all = $alp . '0123456789';
 	$prv = '';
 	$key = '';
 	$qut = '';
 	$cap = false;
-	$dep = 0;
 	$mke = 0;
 	
 	for ($i = 0, $len = strlen($str); $i < $len; $i++) {
@@ -22,15 +19,8 @@ function mapstring($str) {
 		
 		// make
 		if ($mke) {
-			if ($key) {
-				// key => values
-				if (!isset($kys[$key]))
-					$kys[$key] = [];
-				$kys[$key][] = $prv;
-				// value => keys
-				if (!isset($vls[$prv]))
-					$vls[$prv] = [];
-				$vls[$prv][] = $key;
+			if ($key != '') {
+				echo "$key => $val\n";
 			}
 			// reset
 			$key = '';
@@ -73,6 +63,4 @@ function mapstring($str) {
 			$prv = $chr;
 		}
 	}
-	
-	return ['key' => $kys, 'val' => $vls];
 }
