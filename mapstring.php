@@ -11,7 +11,6 @@ function mapstring($str) {
 	$key = '';
 	$val = '';
 	$qut = '';
-	$run = 0;
 	
 	for ($i = 0; $i < $len; $i++) {
 		$chr = $str{$i};
@@ -26,7 +25,7 @@ function mapstring($str) {
 				$val .= $chr;
 			}
 		}
-		// open quotes
+		// quote found
 		else if ($chr == '"' || $chr == "'") {
 			$qut = $chr;
 		}
@@ -38,7 +37,6 @@ function mapstring($str) {
 			}
 			$key = '';
 			$val = '';
-			$run = 0;
 		}
 		// key value switcher
 		else if (strpos(':=', $chr) !== false) {
