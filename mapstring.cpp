@@ -8,7 +8,6 @@ void mapstring(std::string str) {
 	std::string key = "";
 	std::string val = "";
 
-	bool mke = false;
 	char qut = '\0';
 
 	for (char& chr: str) {
