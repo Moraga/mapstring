@@ -6,61 +6,53 @@
  */
 
 function mapstring($str) {
-	$alp = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$all = $alp . '0123456789';
-	$prv = '';
+	$all = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.';
+	$len = strlen($str);
 	$key = '';
+	$val = '';
 	$qut = '';
-	$cap = false;
-	$mke = 0;
+	$run = 0;
 	
-	for ($i = 0, $len = strlen($str); $i < $len; $i++) {
-		$chr = $str[$i];
+	for ($i = 0; $i < $len; $i++) {
+		$chr = $str{$i};
 		
-		// make
-		if ($mke) {
-			if ($key != '') {
-				echo "$key => $val\n";
-			}
-			// reset
-			$key = '';
-			$cap = false;
-			$qut = '';
-			$i -= $mke;
-			$mke = 0;
-		}
-		// capturing
-		else if ($cap) {
-			if (stripos($all, $chr) !== false) {
-				$prv .= $chr;
-			}
-			else {
-				$mke = 2;
-			}
-		}
 		// quoted text
-		else if ($qut != '') {
+		if ($qut) {
+			// quotes ended
 			if ($chr == $qut) {
-				$mke = 1;
+				$qut = '';
 			}
 			else {
-				$prv .= $chr;
+				$val .= $chr;
 			}
 		}
-		// quotes found
+		// open quotes
 		else if ($chr == '"' || $chr == "'") {
 			$qut = $chr;
 		}
-		// separator
-		else if ($chr == ':') {
-			$key = $prv;
-			$prv = '';
-			$cap = false;
+		// make
+		else if (strpos(',]};', $chr) !== false) {
+			// format the value
+			if ($key) {
+				echo "$key => $val\n";
+			}
+			$key = '';
+			$val = '';
+			$run = 0;
 		}
-		// capture sequence
-		else if (stripos($alp, $chr) !== false) {
-			$cap = true;
-			$prv = $chr;
+		// key value switcher
+		else if (strpos(':=', $chr) !== false) {
+			$key = $val;
+			$val = '';
+		}
+		// new divisor
+		else if (strpos('{[', $chr) !== false) {
+			$key = '';
+			$val = '';
+		}
+		// letters, numbers and dots
+		else if (stripos($all, $chr) !== false) {
+			$val .= $chr;
 		}
 	}
 }
